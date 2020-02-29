@@ -1,0 +1,171 @@
+paths:
+  /user:
+    post:
+      security:
+        - cookieAuth: []
+      tags:
+        - User
+      summary: Create a new user
+      produces:
+        - application/json
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRequestBody'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponseBody'
+        400:
+          $ref: '#/components/responses/NotCorrectError'
+        500:
+          $ref: '#/components/responses/ServerError'
+
+
+
+
+  /user/{id}:
+    get:
+      security:
+        - cookieAuth: []
+      tags:
+        - User
+      summary: Get user by ID
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: ID of user
+          example:
+            $ref: '#/components/examples/userIdExample'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponseBody'
+        400:
+          $ref: '#/components/responses/NotCorrectError'
+        404:
+          $ref: '#/components/responses/NotFoundError'
+        500:
+          $ref: '#/components/responses/ServerError'
+
+
+
+
+    put:
+      security:
+        - cookieAuth: []
+      tags:
+        - User
+      summary: Edit user by ID
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: ID of user
+          example:
+            $ref: '#/components/examples/userIdExample'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRequestBody'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponseBody'
+        400:
+          $ref: '#/components/responses/NotCorrectError'
+        404:
+          $ref: '#/components/responses/NotFoundError'
+        500:
+          $ref: '#/components/responses/ServerError'
+
+
+
+
+    delete:
+      security:
+        - cookieAuth: []
+      tags:
+        - User
+      summary: Delete user by ID
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: ID of user
+          example:
+            $ref: '#/components/examples/userIdExample'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponseBody'
+        400:
+          $ref: '#/components/responses/NotCorrectError'
+        404:
+          $ref: '#/components/responses/NotFoundError'
+        500:
+          $ref: '#/components/responses/ServerError'
+
+
+
+
+  /user/{id}/spaces:
+    get:
+      security:
+        - cookieAuth: []
+      tags:
+        - User
+      summary: Get user spaces
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: ID of user
+          example:
+            $ref: '#/components/examples/userIdExample'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SpaceResponseBody'
+        400:
+          $ref: '#/components/responses/NotCorrectError'
+        404:
+          $ref: '#/components/responses/NotFoundError'
+        500:
+          $ref: '#/components/responses/ServerError'
